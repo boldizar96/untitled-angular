@@ -1,7 +1,9 @@
 <div class="card">
     <div class="img-wrapper">
-        <img class="propImage" src="assets/images/smartphone_logo.png">
-        <button class="btn btn-primary animate">Részletek</button>
+        <img *ngIf="product.Image" class="propImage" src="assets/images/{{product.Image}}.png">
+        <img *ngIf="!product.Image && product.Category === 0" class="propImage" src="assets/images/sm-def.png">
+        <img *ngIf="!product.Image && product.Category === 1" class="propImage" src="assets/images/nb-def.png">
+        <button class="btn btn-primary animate" routerLink="property-detail/{{product.ProductId}}">Részletek</button>
         <!--
         <ul class="list-inline text-center member-icons">
             <li class="list-inline-item">

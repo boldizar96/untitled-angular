@@ -1,42 +1,52 @@
 [
     {
-    "ProductId": 1,
-    "ProductName":"iPhone",
-    "Category":"smartphone",
-    "Offerer":"Boldi",
-    "Description":"Apple iPhone 6S",
-    "Price":2000
+      "ProductId": 1,
+      "ProductName":"iPhone",
+      "Category":0,
+      "Offerer":"Boldi",
+      "Description":"Apple iPhone 6S",
+      "Price":2000,
+      "Active":1,
+      "Image":null
     },
     {
       "ProductId": 2,
       "ProductName":"ASUS",
-      "Category":"notebook",
+      "Category":1,
       "Offerer":"Boldi",
       "Description":"ASUS X555 white notebook",
-      "Price":4000
+      "Price":4000,
+      "Active":1,
+      "Image":""
     },
     {
       "ProductId": 3,
       "ProductName":"iPhone",
-      "Category":"smartphone",
+      "Category":0,
       "Offerer":"Ricsi",
       "Description":"Apple iPhone 7",
-      "Price":3000
+      "Price":3000,
+      "Active":0,
+      "Image":""
     },
     {
       "ProductId": 4,
       "ProductName":"ASUS",
-      "Category":"notebook",
+      "Category":1,
       "Offerer":"Ricsi",
       "Description":"ASUS Transformerbook",
-      "Price":3000
+      "Price":3000,
+      "Active":1,
+      "Image":""
     },
     {
       "ProductId": 5,
       "ProductName":"Xiaomi",
-      "Category":"smartphone",
+      "Category":0,
       "Offerer":"Adrián",
       "Description":"Xiaomi Mi 9T Pro",
-      "Price":3000
+      "Price":3000,
+      "Active":0,
+      "Image":""
     }
 ]
