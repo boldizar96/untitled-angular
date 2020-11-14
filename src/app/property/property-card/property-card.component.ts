@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IProduct } from '../IProduct.interface';
 
 @Component({
   selector: 'app-property-card',
@@ -10,12 +11,5 @@ import { Component } from '@angular/core';
   
 )
 export class PropertyCardComponent {
-  Property: any = {
-    "ProductId": 1,
-    "ProductName":"iPhone",
-    "Category":"smartphone",
-    "Offerer":"Boldi",
-    "Description":"Apple iPhone 6S",
-    "Price":2000
-  }
+  @Input() product : IProduct
 }

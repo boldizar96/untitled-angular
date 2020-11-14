@@ -1,3 +1,51 @@
 .propImage{
     height: 200px;
 }
+
+.card:hover img{
+    transform: scale(1.2,1.2);
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
+    /*height: 200px;*/
+    /*opacity: .5;*/
+}
+
+.card img{
+    transform: scale(1,1);
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
+    /*height: 200px;*/
+}
+
+.img-wrapper{
+    /*overflow: hidden;*/
+    position: relative;
+}
+
+.img-wrapper .btn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    visibility: hidden;
+    transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.img-wrapper:hover .btn {
+    visibility: visible;
+}
+
+.img-wrapper .btn:hover {
+    background-color: black;
+}
+
+.animate{
+    transition: ease-in-out;
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from 'src/app/services/products.service';
+import { IProduct } from '../IProduct.interface';
 
 @Component({
   selector: 'app-property-list',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertyListComponent implements OnInit {
 
-  constructor() { }
+  products: Array<IProduct>;
+
+  constructor(private productService: ProductsService ) { }
 
   ngOnInit(): void {
+    this.productService.gettAllProducts().subscribe(
+      data => {
+        this.products = data;
+        console.log(data);
+      },
+      error => {
+        console.log('httperror:');
+        console.log(error);
+      }
+    )
+    // this.http.get('data/properties.json').subscribe(
+    //   data=>{
+    //     this.properties = data;
+    //     console.log(data);
+    //   }
+    // );
   }
 
 }
