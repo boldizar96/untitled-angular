@@ -1,3 +1,64 @@
-<p>
-    <button (click)="onBack()" class="btn btn-primary">Vissza</button>
-</p>
+<div class="card">
+    <div class="card-header">
+        Eszköz bérbeadása
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)='onSubmit()' #Form="ngForm">
+            <div class="form-group col-12">
+                <label for="name">Megnevezés</label>
+                <input type="text" class="form-control" #prodName="ngModel" ngModel name="ProductName" required>
+                <span *ngIf="!prodName.valid && prodName.touched" class="error-block">
+                    Eszköz nevének megadása kötelező!
+                </span>
+            </div>
+
+            <div class="form-group col-12">
+                <label for="category">Kategória</label>
+                <select class="custom-select" #prodCat="ngModel" ngModel name="Category" required>
+                    <option value="1">Okostelefon</option>
+                    <option value="2">Laptop</option>
+                </select>
+                <span *ngIf="!prodCat.valid && prodCat.touched" class="error-block">
+                    Kategória megadása kötelező!
+                </span>
+            </div>
+
+            <div class="form-group col-12">
+                <label for="description">Leírás</label>
+                <input type="text" class="form-control" ngModel name="Description">
+            </div>
+
+            <div class="form-group col-12">
+                <label for="price">Ár</label>
+                <input type="number" class="form-control" #prodPrice="ngModel" ngModel name="Price" required>
+                <span *ngIf="!prodPrice.valid && prodPrice.touched" class="error-block">
+                    Ár megadása kötelező!
+                </span>
+            </div>
+
+            <div class="form-group col-12">
+                <label for="isactive">Megjelenítés elérhetőként</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" #prodAct="ngModel" ngModel name="Active" required>
+                    <option value="0">Igen</option>
+                    <option value="1">Nem</option>
+                </select>
+                <span *ngIf="!prodAct.valid && prodAct.touched" class="error-block">
+                    Eszköz elérhetőségének megadása kötelező!
+                </span>
+            </div>
+
+            <div class="form-group col-12">
+                <label for="images">Kép</label>
+                <input type="file" class="form-control-file" ngModel name="Image">
+            </div>
+
+            <div class="form-group col-12">
+                <button [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Mentés</button>
+                <button type="reset" class="btn btn-primary">Mégsem</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--
+<button (click)="onBack()" class="btn btn-primary">Vissza</button>
+-->
