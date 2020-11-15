@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-6 m-auto">
+    <div class="card m-auto">
+      <div class="card-header">
+        Regisztráció
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <div class="form-group col-12">
+              <label for="name" class="form-label">Név</label>
+              <input type="text" class="form-control" formControlName="userName">
+              <span *ngIf="!userName.valid && (userName.touched || userSubmitted)" class="error-block">
+                  Felhasználónév megadása kötelező!
+              </span>
+          </div>
+  
+          <div class="form-group col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" formControlName="email">
+            <span *ngIf="!email.valid && (email.touched || userSubmitted)" class="error-block">
+                <span *ngIf="email.hasError('required')">
+                    Email cím megadása kötelező!
+                </span>
+                <span *ngIf="email.hasError('email')">
+                    Email cím nem megfelelő formátumú!
+                </span>
+            </span>
+          </div>
+  
+          <div class="form-group col-12">
+            <label for="passwrod" class="form-label">Jelszó</label>
+            <input type="password" class="form-control" formControlName="password">
+            <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="error-block">
+                <span *ngIf="password.errors['required']">
+                    Jelszó megadása kötelező!
+                </span>
+                <span *ngIf="password.errors.minlength">
+                    A jelszónak legalább 8 karakter hosszúnak kell lennie!
+                </span>
+            </span>
+          </div>
+  
+          <div class="form-group col-12">
+            <label for="cpassword" class="form-label">Jelszó megerősítése</label>
+            <input type="password" class="form-control" formControlName="passwordConfirm">
+            <span *ngIf="!passwordConfirm.valid && (passwordConfirm.touched || userSubmitted)" class="error-block">
+                <span *ngIf="passwordConfirm.hasError('required')">
+                    Kérjük erősítse meg jelszavát!
+                </span>
+            </span>
+            <span *ngIf="registrationForm.hasError('notmatched') && passwordConfirm.valid" class="error-block">
+                A két jelszó nem egyezik!
+            </span>
+          </div>
+  
+          <div class="form-group col-12">
+            <label for="mobile" class="form-label">Telefonszám</label>
+            <input type="text" class="form-control" formControlName="phone">
+          </div>
+  
+          <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary">Regisztráció</button>
+            <button type="reset" class="btn btn-secondary ml-2">Mégse</button>
+          </div>
+          <!--
+          Form values: {{registrationForm.value | json}} <br/>
+          Form status: {{registrationForm.valid}}
+          -->
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>

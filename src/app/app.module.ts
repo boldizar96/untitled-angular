@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
@@ -11,6 +11,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProductsService } from './services/products.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
+import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { UserServiceService } from './services/user-service.service';
 
 const appRoutes: Routes = [
   {
@@ -24,6 +27,14 @@ const appRoutes: Routes = [
   {
     path: 'property-detail/:id',
     component: PropertyDetailComponent
+  },
+  {
+    path: 'user/login',
+    component: UserLoginComponent
+  },
+  {
+    path: 'user/register',
+    component: UserRegisterComponent
   },
   {
     path: '**',
@@ -42,16 +53,20 @@ const appRoutes: Routes = [
     PropertyListComponent,
     NavBarComponent,
     AddPropertyComponent,
-    PropertyDetailComponent
+    PropertyDetailComponent,
+    UserLoginComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    UserServiceService
   ],
   bootstrap: [AppComponent]
 })
