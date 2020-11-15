@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
+//import * as alertify from 'alertifyjs';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-user-register',
@@ -16,7 +18,7 @@ export class UserRegisterComponent implements OnInit {
 
   userSubmitted: boolean;
 
-  constructor(private fb: FormBuilder, private userService: UserServiceService) { }
+  constructor(private fb: FormBuilder, private userService: UserServiceService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     /*
@@ -74,6 +76,10 @@ export class UserRegisterComponent implements OnInit {
       //localStorage.setItem('Users', JSON.stringify(this.user));
       this.userService.addUser(this.userData());
       this.registrationForm.reset();
+      this.userSubmitted = false;
+      this.alertify.success("Sikeres regisztráció!");
+    } else {
+      this.alertify.error("Töltse ki a kötelező mezőket!");
     }
   }
 
