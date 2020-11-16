@@ -16,14 +16,39 @@
           <a class="nav-link" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" routerLink="/add-property">Eszköz bérbeadása</a>
         </li>
       </ul>
+
       <div>
         <ul class="nav navbar-nav">
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="!loggedin()">
             <a class="nav-link" routerLink="user/register" routerLinkActive="active">Regisztráció</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="!loggedin()">
             <a class="nav-link" routerLink="user/login" routerLinkActive="active">Bejelentkezés</a>
           </li>
+          <!--
+          <li class="nav-item" *ngIf="loggedin()">
+            <a class="nav-link" (click)="onLogout()">Kijelentkezés</a>
+          </li>
+          -->
+          <div *ngIf="loggedin()" class="dropdown mr-5" dropdown>
+            <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
+              {{loggedinUser}}
+            </a>
+            <div class="dropdown-menu" *dropdownMenu>
+              <a href="#" class="dropdown-item">
+                Dashboard
+              </a>
+              <a href="#" class="dropdown-item">
+                Profilom
+              </a>
+              <a href="#" class="dropdown-item">
+                Jelszó megváltoztatása
+              </a>
+              <a (click)='onLogout()' class="dropdown-item">
+                Kijelentkezés
+              </a>
+            </div>
+          </div>
         </ul>
       </div>
     </div>

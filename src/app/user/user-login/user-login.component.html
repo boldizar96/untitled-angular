@@ -1,1 +1,25 @@
-<p>user-login works!</p>
+<div class="row">
+    <div class="col-6 m-auto">
+        <div class="card m-auto">
+            <div class="card-header">
+                Bejelentkezés
+            </div>
+            <div class="card-body">
+                <form #loginForm='ngForm' (ngSubmit)="onLogin(loginForm)">
+                    <div class="form-group col-12">
+                        <label>Email</label>
+                        <input  class="form-control" required ngModel name="email">
+                    </div>
+                    <div class="form-group col-12">
+                        <label>Jelszó</label>
+                        <input  class="form-control" required type="password" ngModel name="password">
+                    </div>
+                    <div class="form-group col-12">
+                        <button [disabled]="!loginForm.valid" type="submit"  class="btn btn-primary">Belépés</button>
+                        <button type="button"  class="btn btn-secondary ml-2">Mégsem</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

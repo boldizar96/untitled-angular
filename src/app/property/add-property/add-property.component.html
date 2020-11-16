@@ -1,64 +1,98 @@
-<div class="card">
-    <div class="card-header">
-        Eszköz bérbeadása
+<div class="row mb-5">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                Eszköz bérbeadása
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)='onSubmit()' #Form="ngForm">
+                    <div>
+                        <tabset #formsTabs>
+                        <tab heading="Alap információk">
+                                <div class="form-group col-12">
+                                    <label for="name">Megnevezés</label>
+                                    <input type="text" class="form-control" #prodName="ngModel" ngModel name="ProductName" required [(ngModel)]="preView.ProductName" >
+                                    <span *ngIf="!prodName.valid && prodName.touched" class="error-block">
+                                        Eszköz nevének megadása kötelező!
+                                    </span>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="category">Kategória</label>
+                                    <select class="custom-select" #prodCat="ngModel" ngModel name="Category" required [(ngModel)]="preView.Category">
+                                        <option *ngFor="let cat of categories; index as i;" value="{{i}}">{{cat}}</option>
+                                    </select>
+                                    <span *ngIf="!prodCat.valid && prodCat.touched" class="error-block">
+                                        Kategória megadása kötelező!
+                                    </span>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="description">Leírás</label>
+                                    <textarea type="text" class="form-control" ngModel name="Description" [(ngModel)]="preView.Description"></textarea>
+                                </div>
+                            <div class="form-group col-12">
+                                <button type="button" class="btn btn-primary mr-2" (click)="selectTab(1)">Következő</button>
+                            </div>
+                        </tab>
+                        <tab heading="Árazás">
+                            <div class="form-group col-12">
+                                <label for="price">Ár (Ft/óra)</label>
+                                <input type="number" class="form-control" #prodPrice="ngModel" ngModel name="Price" required [(ngModel)]="preView.Price">
+                                <span *ngIf="!prodPrice.valid && prodPrice.touched" class="error-block">
+                                    Ár megadása kötelező!
+                                </span>
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="isactive">Megjelenítés elérhetőként</label>
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" #prodAct="ngModel" ngModel name="Active" required [(ngModel)]="preView.Active">
+                                    <option value="0">Igen</option>
+                                    <option value="1">Nem</option>
+                                </select>
+                                <span *ngIf="!prodAct.valid && prodAct.touched" class="error-block">
+                                    Eszköz elérhetőségének megadása kötelező!
+                                </span>
+                            </div>
+                            <div class="form-group col-12">
+                                <button type="button" class="btn btn-secondary mr-2" (click)="selectTab(0)">Vissza</button>
+                                <button type="button" class="btn btn-primary mr-2" (click)="selectTab(2)">Következő</button>
+                            </div>
+                        </tab>
+                        <tab heading="Képek">
+                            <div class="form-group col-12">
+                                <div class="photo-control">
+                                    <button class="mt-5" type="button">Feltöltés</button> <br>
+                                    Fejlesztés alatt
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <button type="button" class="btn btn-secondary mr-2" (click)="selectTab(1)">Vissza</button>
+                                <button type="reset" class="btn btn-danger mr-2">Mégse</button>
+                                <button type="submit" class="btn btn-success mr-2">Mentés</button>
+                            </div>
+                            <!--
+                            <div class="form-group col-12">
+                                <label for="images">Képek feltöltése</label>
+                                <input type="file" class="form-control-file" ngModel name="Image">
+                            </div>
+                            
+                            -->
+                        </tab>
+                        </tabset>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-        <form (ngSubmit)='onSubmit()' #Form="ngForm">
-            <div class="form-group col-12">
-                <label for="name">Megnevezés</label>
-                <input type="text" class="form-control" #prodName="ngModel" ngModel name="ProductName" required>
-                <span *ngIf="!prodName.valid && prodName.touched" class="error-block">
-                    Eszköz nevének megadása kötelező!
-                </span>
-            </div>
-
-            <div class="form-group col-12">
-                <label for="category">Kategória</label>
-                <select class="custom-select" #prodCat="ngModel" ngModel name="Category" required>
-                    <option value="1">Okostelefon</option>
-                    <option value="2">Laptop</option>
-                </select>
-                <span *ngIf="!prodCat.valid && prodCat.touched" class="error-block">
-                    Kategória megadása kötelező!
-                </span>
-            </div>
-
-            <div class="form-group col-12">
-                <label for="description">Leírás</label>
-                <input type="text" class="form-control" ngModel name="Description">
-            </div>
-
-            <div class="form-group col-12">
-                <label for="price">Ár</label>
-                <input type="number" class="form-control" #prodPrice="ngModel" ngModel name="Price" required>
-                <span *ngIf="!prodPrice.valid && prodPrice.touched" class="error-block">
-                    Ár megadása kötelező!
-                </span>
-            </div>
-
-            <div class="form-group col-12">
-                <label for="isactive">Megjelenítés elérhetőként</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" #prodAct="ngModel" ngModel name="Active" required>
-                    <option value="0">Igen</option>
-                    <option value="1">Nem</option>
-                </select>
-                <span *ngIf="!prodAct.valid && prodAct.touched" class="error-block">
-                    Eszköz elérhetőségének megadása kötelező!
-                </span>
-            </div>
-
-            <div class="form-group col-12">
-                <label for="images">Kép</label>
-                <input type="file" class="form-control-file" ngModel name="Image">
-            </div>
-
-            <div class="form-group col-12">
-                <button [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Mentés</button>
-                <button type="reset" class="btn btn-primary">Mégsem</button>
-            </div>
-        </form>
+    <div class="col-4">
+        <div class="card-header">
+            Előnézet
+        </div>
+        <div>
+            <app-property-card [product]="preView"></app-property-card>
+        </div>
     </div>
 </div>
+
 <!--
 <button (click)="onBack()" class="btn btn-primary">Vissza</button>
 -->
