@@ -1,4 +1,4 @@
-export interface IProduct {
+export interface IProductBase {
     ProductId: number;
     ProductName: string;
     Category: number;
@@ -9,4 +9,4 @@ export interface IProduct {
     Image?: string;
 }
 
-// kategóriák: 0 - smartphone, 1 - notebook
+// kategóriák: 0 - smartphone, 1 - notebook, 2 - asztali gép

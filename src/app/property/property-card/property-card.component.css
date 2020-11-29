@@ -1,5 +1,13 @@
+.card{
+    
+}
+
+.font-highlight{
+    font-style: italic;
+}
+
 .propImage{
-    height: 200px;
+    max-width: 238px;
 }
 
 .card:hover img{
@@ -20,6 +28,7 @@
 .img-wrapper{
     /*overflow: hidden;*/
     position: relative;
+    min-width: 100px;
 }
 
 .img-wrapper .btn{

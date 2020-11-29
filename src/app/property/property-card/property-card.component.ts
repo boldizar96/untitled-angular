@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from '../IProduct.interface';
+import { IProduct } from 'src/app/model/iproduct';
+//import { IProduct } from '../IProduct.interface';
 
 @Component({
   selector: 'app-property-card',
@@ -11,5 +12,6 @@ import { IProduct } from '../IProduct.interface';
   
 )
 export class PropertyCardComponent {
-  @Input() product : IProduct
+  @Input() product : IProduct;
+  @Input() hideIcons: boolean;
 }

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "untitledproject-s"
+  },
+  "targets": {
+    "untitledproject-s": {
+      "hosting": {
+        "untitled": [
+          "untitledproject-s"
+        ]
+      }
+    }
+  }
+}

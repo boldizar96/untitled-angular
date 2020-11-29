@@ -4,7 +4,7 @@
         <img *ngIf="!product.Image && product.Category == 0" class="propImage" src="assets/images/sm-def.png">
         <img *ngIf="!product.Image && product.Category == 1" class="propImage" src="assets/images/nb-def.png">
         <img *ngIf="!product.Image && product.Category == 2" class="propImage" src="assets/images/pc-def.png">
-        <button class="btn btn-primary animate" routerLink="property-detail/{{product.ProductId}}">Részletek</button>
+        <button *ngIf="!hideIcons" class="btn btn-primary animate" routerLink="property-detail/{{product.ProductId}}">Részletek</button>
         <!--
         <ul class="list-inline text-center member-icons">
             <li class="list-inline-item">
@@ -16,6 +16,6 @@
     <div class="card-body p-3">
         <h1>{{product.ProductName}}</h1>
         <h4>{{product.Offerer}}</h4>
-        <h3>{{product.Price}} Ft/óra</h3>
+        <h3 *ngIf="product.Price" class="font-highlight">{{product.Price}} Ft/óra</h3>
     </div>
 </div>

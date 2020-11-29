@@ -1,5 +1,23 @@
+{{Today}}<br>
+<div class="input-group">
+    <input [(ngModel)] = 'nameFilter' placeholder="termék megnevezése">&nbsp;
+    <button type="button" (click)="onNameFilter()" class="btn btn-info btn-sm">Keresés</button>&nbsp;
+    <button type="button" (click)="resetNameFilter()" class="btn btn-warning btn-sm">Szűrő törlése</button>&nbsp;
+    <div style="display: inline-block;">
+        Rendezés:&nbsp;
+        <select [(ngModel)] = 'SortByParam'>
+            <option value="Price">Ár</option>
+            <option value="ProductName">Név</option>
+        </select>&nbsp;
+        <select [(ngModel)] = 'SortByOrd'>
+            <option value="asc">Növekvő</option>
+            <option value="desc">Csökkenő</option>
+        </select>
+    </div>
+</div>
+
 <div class="row">
-    <div *ngFor="let prop of products" class="shadow-lg p-3">
+    <div *ngFor="let prop of products|filter:searchName:'ProductName'|sort:[SortByParam,SortByOrd]" class="shadow-lg p-3">
         <app-property-card [product]="prop"></app-property-card>>
     </div>
 </div>
