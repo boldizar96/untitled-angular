@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 //import { IProduct } from '../property/IProduct.interface';
 import { Observable } from 'rxjs';
 import { IProduct } from '../model/iproduct';
@@ -14,10 +14,39 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
+  testApi(){
+    // https://gorest.co.in/public-api/users
+    this.http.get<string[]>('https://localhost:5001/api/products').subscribe(
+      Response => console.log(Response)
+    );
+  }
+
   getProduct(id: number){
     return this.gettAllProducts().pipe(
       map(productsArray => {
         return productsArray.find(p => p.ProductId === id);
+      })
+    );
+  }
+
+  gettAllProductsFromApi() : Observable<any[]>{
+    return this.http.get('https://localhost:5001/api/products').pipe(
+      map(data => {
+        const productsArray: Array<Object> = [];
+        const localProducts = JSON.parse(localStorage.getItem('newProd'));
+        if(localProducts){
+          for (const id in localProducts){
+            if(localProducts.hasOwnProperty(id)){
+              productsArray.push(localProducts[id]);
+            } 
+          }
+        }
+        for (const id in data){
+          if(data.hasOwnProperty(id)){
+            productsArray.push(data[id]);
+          } 
+        }
+        return productsArray;
       })
     );
   }
@@ -55,6 +84,11 @@ export class ProductsService {
         return productsArray;
       })
     );
+  }
+
+  addProductToApi(product: Product){
+    let newProd = [product];
+    this.http.post('https://localhost:5001/api/products',newProd);
   }
 
   addProduct(product: Product){

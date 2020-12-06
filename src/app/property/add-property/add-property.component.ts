@@ -24,6 +24,7 @@ export class AddPropertyComponent implements OnInit {
 
   categories: Array<string> = ['Okostelefon', 'Laptop', 'Asztali számítógép']
 
+  /*
   preView: IProduct = {
     ProductId: null,
     ProductName: '',
@@ -33,7 +34,30 @@ export class AddPropertyComponent implements OnInit {
     Offerer: '',
     Price: null,
     Image: null
-  };  
+  };
+  */
+ 
+ preView: IProduct = {
+    ProductId: null,
+    ProductName: '',
+    Category: null,
+    Active: null,
+    Description: '',
+    Offerer: '',
+    Price: null,
+    Image: null,
+    //API
+    categories: null,
+    condition: 0,
+    description: '',
+    imageName: '',
+    latitude: 0,
+    longitude: 0,
+    offerer: '',
+    price: 0,
+    productId: null,
+    productName: ''
+};
 
   //constructor(private fb: FormBuilder, private router: Router) { }
   constructor(private productService: ProductsService, private router: Router, private alertify: AlertifyService, private authServ: AuthService) { }
@@ -83,6 +107,11 @@ export class AddPropertyComponent implements OnInit {
     this.product.Offerer = this.authServ.currUsr;
     this.product.Description = this.preView.Description;
     this.product.Image = this.preView.Image;
+    // API
+    this.product.productName = this.preView.ProductName;
+    this.product.price = this.preView.Price;
+    this.product.offerer = this.authServ.currUsr;
+    this.product.description = this.preView.Description;
   }
 
 }

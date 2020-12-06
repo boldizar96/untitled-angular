@@ -10,4 +10,15 @@ export class Product implements IProductBase {
     Active: number;
     Image?: string;
     City?: string;
+    // API
+    categories: any;
+    condition: number;
+    description: string;
+    imageName: any;
+    latitude: number;
+    longitude: number;
+    offerer: string;
+    price: number;
+    productId: number;
+    productName: string;
 }

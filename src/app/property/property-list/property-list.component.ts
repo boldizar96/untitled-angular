@@ -23,7 +23,7 @@ export class PropertyListComponent implements OnInit {
   constructor(private productService: ProductsService ) { }
 
   ngOnInit(): void {
-    this.productService.gettAllProducts().subscribe(
+    this.productService.gettAllProductsFromApi().subscribe(
       data => {
         this.products = data;
         /*
@@ -45,6 +45,7 @@ export class PropertyListComponent implements OnInit {
     //     console.log(data);
     //   }
     // );
+    this.productService.testApi();
   }
 
   onNameFilter(){
