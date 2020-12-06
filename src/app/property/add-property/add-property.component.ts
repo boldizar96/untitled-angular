@@ -8,6 +8,8 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { Product } from 'src/app/model/product';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { catchError } from 'rxjs/operators';
+import { PostProduct } from 'src/app/model/postproduct';
 //import { IProduct } from '../IProduct.interface';
 
 @Component({
@@ -19,6 +21,7 @@ export class AddPropertyComponent implements OnInit {
   @ViewChild('Form') addProductForm: NgForm;
   @ViewChild('formsTabs') staticTabs: TabsetComponent;
   product = new Product();
+  pp = new PostProduct();
 
   //addProductForm2: FormGroup;
 
@@ -84,7 +87,7 @@ export class AddPropertyComponent implements OnInit {
   onSubmit(){
     console.log('Submit ok!');
     this.mapProduct();
-    this.productService.addProduct(this.product);
+    this.productService.addProductToApi(this.pp).subscribe();
     this.alertify.success('Eszköz léterjött!');
     this.router.navigate(['/']);
     /*
@@ -99,6 +102,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   mapProduct(): void{
+    /*
     this.product.ProductId = this.productService.newProdID();
     this.product.ProductName = this.preView.ProductName;
     this.product.Category = this.preView.Category;
@@ -112,6 +116,16 @@ export class AddPropertyComponent implements OnInit {
     this.product.price = this.preView.Price;
     this.product.offerer = this.authServ.currUsr;
     this.product.description = this.preView.Description;
+    */
+    this.pp.productName = this.preView.ProductName;
+    this.pp.price = this.preView.Price;
+    this.pp.offerer = this.authServ.currUsr;
+    this.pp.description = this.preView.Description;
+    this.pp.categories = null;
+    this.pp.condition = 1;
+    this.pp.imageName = '';
+    this.pp.latitude = 0;
+    this.pp.longitude = 0;
   }
 
 }

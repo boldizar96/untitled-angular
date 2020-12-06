@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { IProduct } from '../model/iproduct';
 import { Product } from '../model/product';
 import { IProductBase } from '../model/iproductbase';
+import { PostProduct } from '../model/postproduct';
 
 @Injectable({
   providedIn: 'root'
@@ -86,9 +87,9 @@ export class ProductsService {
     );
   }
 
-  addProductToApi(product: Product){
-    let newProd = [product];
-    this.http.post('https://localhost:5001/api/products',newProd);
+  addProductToApi(product: PostProduct) : Observable<PostProduct>{
+    console.log(product);
+    return this.http.post<PostProduct>('https://localhost:5001/api/products', JSON.stringify([product]));
   }
 
   addProduct(product: Product){

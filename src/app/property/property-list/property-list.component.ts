@@ -45,7 +45,8 @@ export class PropertyListComponent implements OnInit {
     //     console.log(data);
     //   }
     // );
-    this.productService.testApi();
+    
+    //this.productService.testApi();
   }
 
   onNameFilter(){
